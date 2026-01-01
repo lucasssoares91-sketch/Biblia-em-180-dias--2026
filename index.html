@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia em 180 – 2026: Ano das Oportunidades</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #95a5a6;
+            --border: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        }
+        
+        body {
+            background: var(--light);
+            color: var(--dark);
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            --light: #16213e;
+            --border: #2d3748;
+            --dark: #f1f5f9;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 10px;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            font-size: 20px;
+        }
+        
+        .subtitle {
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Card Principal */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .card {
+            background: #16213e;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .date {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .day-count {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .reading {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--dark);
+            line-height: 1.4;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 2px solid var(--border);
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .dark-mode .reading {
+            color: #f1f5f9;
+        }
+        
+        /* Botão de Checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .checkbox-container:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+            transform: scale(1.1);
+        }
+        
+        .checkbox.checked::after {
+            content: "✓";
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .checkbox-label {
+            font-size: 17px;
+            color: var(--dark);
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .dark-mode .checkbox-label {
+            color: #e0e0e0;
+        }
+        
+        /* Barra de Progresso */
+        .progress-section {
+            margin: 25px 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-percent {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        /* Estatísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .stat-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stat-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        
+        .dark-mode .stat-value {
+            color: #f1f5f9;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        /* Prévia do Amanhã */
+        .tomorrow-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 18px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .dark-mode .tomorrow-card {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+        
+        .tomorrow-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tomorrow-reading {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        
+        .dark-mode .tomorrow-reading {
+            color: #f1f5f9;
+        }
+        
+        /* Navegação */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            border-radius: 15px;
+            padding: 8px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .nav-tabs {
+            background: #16213e;
+        }
+        
+        .nav-btn {
+            padding: 14px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-btn i {
+            font-size: 18px;
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+        
+        /* Seções Ocultas */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Calendário */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .calendar-day.empty {
+            background: transparent;
+        }
+        
+        .calendar-day.future {
+            background: var(--light);
+            color: var(--gray);
+        }
+        
+        .calendar-day.current {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .calendar-day.completed {
+            background: var(--success);
+            color: white;
+        }
+        
+        /* Configurações */
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background: var(--light);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .setting-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        
+        .setting-icon {
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Botões de Ação */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            padding: 16px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+        }
+        
+        .action-btn.secondary {
+            background: var(--light);
+            color: var(--dark);
+            border: 2px solid var(--border);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Botão Flutuante */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        /* Modal de Anotações */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .dark-mode .modal {
+            background: #16213e;
+            color: #e0e0e0;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .dark-mode .modal-title {
+            color: #f1f5f9;
+        }
+        
+        .modal-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 15px;
+            background: var(--light);
+            color: var(--dark);
+        }
+        
+        .dark-mode textarea {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            border-color: #2d3748;
+        }
+        
+        /* Toast Notificação */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        
+        .toast.success {
+            background: var(--success);
+        }
+        
+        .toast.warning {
+            background: var(--warning);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-bible logo-icon"></i>
+            <span>Bíblia em 180</span>
+        </div>
+        <div class="subtitle">2026 • O Ano das Oportunidades</div>
+    </div>
+    
+    <!-- Seção: Hoje (Ativa por padrão) -->
+    <div class="section active" id="todaySection">
+        <div class="card">
+            <div class="date">
+                <span id="currentDate">1 de janeiro de 2026</span>
+                <span class="day-count">Dia 1 de 180</span>
+            </div>
+            
+            <div class="reading" id="todayReading">Mateus 1–9</div>
+            
+            <div class="checkbox-container" id="checkContainer">
+                <div class="checkbox" id="checkBtn"></div>
+                <div class="checkbox-label" id="checkLabel">Marcar leitura como concluída</div>
+            </div>
+            
+            <!-- Botão de Anotações -->
+            <div class="checkbox-container" id="notesBtn" style="margin-top: 15px;">
+                <div class="checkbox" style="background: #f39c12; border-color: #f39c12;">
+                    <i class="fas fa-pen" style="color: white;"></i>
+                </div>
+                <div class="checkbox-label">Adicionar anotações do dia</div>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span>Progresso geral</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-value" id="completedDays">0</div>
+                    <div class="stat-label">dias completos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-value" id="streakDays">0</div>
+                    <div class="stat-label">sequência atual</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-value" id="remainingDays">180</div>
+                    <div class="stat-label">dias restantes</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tomorrow-card">
+            <div class="tomorrow-label">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Amanhã • 2 de janeiro</span>
+            </div>
+            <div class="tomorrow-reading" id="tomorrowReading">Mateus 10–15</div>
+        </div>
+    </div>
+    
+    <!-- Seção: Calendário -->
+    <div class="section" id="calendarSection">
+        <div class="card">
+            <div class="calendar-header">
+                <div>
+                    <div style="font-size: 18px; font-weight: 700;">Janeiro 2026</div>
+                    <div style="font-size: 13px; color: var(--gray);">Seu progresso mensal</div>
+                </div>
+                <div class="calendar-nav">
+                    <div class="nav-arrow" id="prevMonth"><i class="fas fa-chevron-left"></i></div>
+                    <div class="nav-arrow" id="nextMonth"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Gerado por JavaScript -->
+            </div>
+            
+            <div style="margin-top: 25px; display: flex; gap: 15px; font-size: 13px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 15px; height: 15px; background: var(--success); border-radius: 4px;"></div>
+                    <span>Concluído</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 15px; height: 15px; background: linear-gradient(135deg, #4361ee, #3a0ca3); border-radius: 4px;"></div>
+                    <span>Hoje</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 15px; height: 15px; background: var(--light); border-radius: 4px; border: 1px solid var(--border);"></div>
+                    <span>Futuro</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Seção: Progresso -->
+    <div class="section" id="progressSection">
+        <div class="card">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <div style="font-size: 24px; font-weight: 800;" id="overallProgress">0%</div>
+                <div style="color: var(--gray); font-size: 14px;">do plano concluído</div>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <div class="progress-bar" style="height: 20px;">
+                    <div class="progress-fill" id="overallProgressBar"></div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-value" id="totalChapters">0</div>
+                    <div class="stat-label">capítulos lidos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value" id="totalBooks">0</div>
+                    <div class="stat-label">livros completos</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div style="font-weight: 700; margin-bottom: 15px;">Conquistas</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <div style="background: var(--light); padding: 10px 15px; border-radius: 12px; font-size: 13px;">
+                        <i class="fas fa-medal" style="color: #f39c12; margin-right: 8px;"></i>
+                        <span>Primeira semana</span>
+                    </div>
+                    <div style="background: var(--light); padding: 10px 15px; border-radius: 12px; font-size: 13px;">
+                        <i class="fas fa-trophy" style="color: #f39c12; margin-right: 8px;"></i>
+                        <span>30 dias seguidos</span>
+                    </div>
+                    <div style="background: var(--light); padding: 10px 15px; border-radius: 12px; font-size: 13px;">
+                        <i class="fas fa-star" style="color: #f39c12; margin-right: 8px;"></i>
+                        <span>Novo Testamento</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn secondary" id="exportBtn">
+                <i class="fas fa-file-export"></i>
+                Exportar Progresso
+            </button>
+            <button class="action-btn primary" id="shareBtn">
+                <i class="fas fa-share-alt"></i>
+                Compartilhar
+            </button>
+        </div>
+    </div>
+    
+    <!-- Seção: Configurações -->
+    <div class="section" id="settingsSection">
+        <div class="card">
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-bell setting-icon"></i>
+                    <span>Notificações diárias</span>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="notificationsToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-moon setting-icon"></i>
+                    <span>Modo escuro</span>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="setting-item" id="backupBtn">
+                <div class="setting-label">
+                    <i class="fas fa-cloud-upload-alt setting-icon"></i>
+                    <span>Backup na nuvem</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color: var(--gray);"></i>
+            </div>
+            
+            <div class="setting-item" id="restoreBtn">
+                <div class="setting-label">
+                    <i class="fas fa-cloud-download-alt setting-icon"></i>
+                    <span>Restaurar backup</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color: var(--gray);"></i>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-language setting-icon"></i>
+                    <span>Idioma</span>
+                </div>
+                <span style="color: var(--primary); font-weight: 600;">Português</span>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <i class="fas fa-volume-up setting-icon"></i>
+                    <span>Som ao completar</span>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn secondary" id="resetBtn">
+                <i class="fas fa-redo"></i>
+                Reiniciar Progresso
+            </button>
+            <button class="action-btn primary" id="helpBtn">
+                <i class="fas fa-question-circle"></i>
+                Ajuda
+            </button>
+        </div>
+    </div>
+    
+    <!-- Navegação -->
+    <div class="nav-tabs">
+        <div class="nav-btn active" data-section="todaySection">
+            <i class="fas fa-home"></i>
+            <span>Hoje</span>
+        </div>
+        <div class="nav-btn" data-section="calendarSection">
+            <i class="fas fa-calendar"></i>
+            <span>Calendário</span>
+        </div>
+        <div class="nav-btn" data-section="progressSection">
+            <i class="fas fa-chart-line"></i>
+            <span>Progresso</span>
+        </div>
+        <div class="nav-btn" data-section="settingsSection">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+        </div>
+    </div>
+    
+    <!-- Botão Flutuante (Anotações) -->
+    <div class="fab" id="fabNotes">
+        <i class="fas fa-pen"></i>
+    </div>
+    
+    <!-- Modal de Anotações -->
+    <div class="modal-overlay" id="notesModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Anotações do dia</div>
+                <div class="modal-close" id="closeNotesModal">&times;</div>
+            </div>
+            <div style="margin-bottom: 15px; color: var(--gray); font-size: 14px;">
+                1 de janeiro • Mateus 1–9
+            </div>
+            <textarea id="notesTextarea" placeholder="Escreva suas reflexões, insights ou versículos marcantes..."></textarea>
+            <button class="action-btn primary" style="width: 100%;" id="saveNotesBtn">
+                <i class="fas fa-save"></i>
+                Salvar Anotações
+            </button>
+        </div>
+    </div>
+    
+    <!-- Toast Notificação -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Leitura marcada como concluída!</span>
+    </div>
+    
+    <script>
+        // ==================== ESTADO GLOBAL ====================
+        const appState = {
+            currentDay: 1,
+            completedDays: 0,
+            streak: 0,
+            progress: 0,
+            totalChapters: 0,
+            totalBooks: 0,
+            darkMode: false,
+            notifications: true,
+            sound: true,
+            notes: {},
+            completedDates: []
+        };
+        
+        // ==================== PLANO DE LEITURA 2026 ====================
+        const readingPlan = [
+            // Janeiro
+            { day: 1, reading: "Mateus 1–9", chapters: 9, book: "Mateus" },
+            { day: 2, reading: "Mateus 10–15", chapters: 6, book: "Mateus" },
+            { day: 3, reading: "Mateus 16–22", chapters: 7, book: "Mateus" },
+            { day: 4, reading: "Mateus 23–28", chapters: 6, book: "Mateus" },
+            { day: 5, reading: "Marcos 1–8", chapters: 8, book: "Marcos" },
+            { day: 6, reading: "Marcos 9–16", chapters: 8, book: "Marcos" },
+            { day: 7, reading: "Lucas 1–6", chapters: 6, book: "Lucas" },
+            { day: 8, reading: "Lucas 7–11", chapters: 5, book: "Lucas" },
+            { day: 9, reading: "Lucas 12–18", chapters: 7, book: "Lucas" },
+            { day: 10, reading: "Lucas 19–24", chapters: 6, book: "Lucas" },
+            { day: 11, reading: "João 1–7", chapters: 7, book: "João" },
+            { day: 12, reading: "João 8–15", chapters: 8, book: "João" },
+            { day: 13, reading: "João 16–21", chapters: 6, book: "João" },
+            { day: 14, reading: "Atos 1–7", chapters: 7, book: "Atos" },
+            { day: 15, reading: "Atos 8–14", chapters: 7, book: "Atos" },
+            { day: 16, reading: "Atos 15–21", chapters: 7, book: "Atos" },
+            { day: 17, reading: "Atos 22–28", chapters: 7, book: "Atos" },
+            { day: 18, reading: "Romanos 1–8", chapters: 8, book: "Romanos" },
+            { day: 19, reading: "Romanos 9–16", chapters: 8, book: "Romanos" },
+            { day: 20, reading: "1 Coríntios 1–9", chapters: 9, book: "1 Coríntios" },
+            { day: 21, reading: "1 Coríntios 10–16", chapters: 7, book: "1 Coríntios" },
+            { day: 22, reading: "2 Coríntios", chapters: 13, book: "2 Coríntios" },
+            { day: 23, reading: "Gálatas e Efésios", chapters: 13, book: "Gálatas/Efésios" },
+            { day: 24, reading: "Filipenses, Colossenses, 1-2 Tessalonicenses", chapters: 17, book: "Cartas Paulinas" },
+            { day: 25, reading: "1-2 Timóteo, Tito, Filemom", chapters: 13, book: "Cartas Pastorais" },
+            { day: 26, reading: "Hebreus", chapters: 13, book: "Hebreus" },
+            { day: 27, reading: "Tiago, 1-2 Pedro", chapters: 14, book: "Cartas Gerais" },
+            { day: 28, reading: "1-3 João, Judas", chapters: 9, book: "Cartas Joaninas" },
+            { day: 29, reading: "Apocalipse 1–11", chapters: 11, book: "Apocalipse" },
+            { day: 30, reading: "Apocalipse 12–22", chapters: 11, book: "Apocalipse" },
+            { day: 31, reading: "Gênesis 1–7", chapters: 7, book: "Gênesis" }
+        ];
+        
+        // ==================== FUNÇÕES UTILITÁRIAS ====================
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        function formatDate(day) {
+            const baseDate = new Date(2026, 0, 1); // 1 de janeiro de 2026
+            const currentDate = new Date(baseDate);
+            currentDate.setDate(baseDate.getDate() + day - 1);
+            
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return currentDate.toLocaleDateString('pt-BR', options);
+        }
+        
+        function getDayOfYear(day) {
+            const baseDate = new Date(2026, 0, 1);
+            const currentDate = new Date(baseDate);
+            currentDate.setDate(baseDate.getDate() + day - 1);
+            
+            const start = new Date(currentDate.getFullYear(), 0, 0);
+            const diff = currentDate - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            return Math.floor(diff / oneDay);
+        }
+        
+        // ==================== FUNÇÕES DE ESTADO ====================
+        function saveState() {
+            localStorage.setItem('bibleApp2026', JSON.stringify(appState));
+        }
+        
+        function loadState() {
+            const saved = localStorage.getItem('bibleApp2026');
+            if (saved) {
+                Object.assign(appState, JSON.parse(saved));
+            }
+        }
+        
+        function toggleDayCompleted() {
+            const todayKey = getDayOfYear(appState.currentDay).toString();
+            const isCompleted = appState.completedDates.includes(todayKey);
+            
+            if (!isCompleted) {
+                // Marcar como concluído
+                appState.completedDates.push(todayKey);
+                appState.completedDays++;
+                appState.streak++;
+                appState.totalChapters += readingPlan[appState.currentDay - 1].chapters;
+                appState.progress = (appState.completedDays / 180) * 100;
+                
+                // Verificar se completou um livro
+                const todayBook = readingPlan[appState.currentDay - 1].book;
+                if (!appState.completedBooks) appState.completedBooks = [];
+                if (!appState.completedBooks.includes(todayBook)) {
+                    appState.completedBooks.push(todayBook);
+                    appState.totalBooks = appState.completedBooks.length;
+                }
+                
+                showToast('Leitura concluída! +' + readingPlan[appState.currentDay - 1].chapters + ' capítulos', 'success');
+            } else {
+                // Desmarcar
+                const index = appState.completedDates.indexOf(todayKey);
+                if (index > -1) {
+                    appState.completedDates.splice(index, 1);
+                    appState.completedDays--;
+                    appState.streak = Math.max(0, appState.streak - 1);
+                    appState.totalChapters -= readingPlan[appState.currentDay - 1].chapters;
+                    appState.progress = (appState.completedDays / 180) * 100;
+                    
+                    showToast('Leitura desmarcada', 'warning');
+                }
+            }
+            
+            updateUI();
+            saveState();
+            
+            // Efeito sonoro
+            if (appState.sound && !isCompleted) {
+                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+                audio.play().catch(e => console.log("Audio não suportado"));
+            }
+        }
+        
+        // ==================== ATUALIZAÇÃO DA UI ====================
+        function updateUI() {
+            // Atualizar data e leitura
+            document.getElementById('currentDate').textContent = formatDate(appState.currentDay);
+            document.getElementById('todayReading').textContent = readingPlan[appState.currentDay - 1].reading;
+            document.getElementById('dayCount').textContent = `Dia ${appState.currentDay} de 180`;
+            
+            // Atualizar leitura de amanhã
+            if (appState.currentDay < 180) {
+                document.getElementById('tomorrowReading').textContent = readingPlan[appState.currentDay].reading;
+            } else {
+                document.getElementById('tomorrowReading').textContent = "Plano concluído! 🎉";
+            }
+            
+            // Verificar se o dia atual está concluído
+            const todayKey = getDayOfYear(appState.currentDay).toString();
+            const isCompleted = appState.completedDates.includes(todayKey);
+            
+            // Atualizar checkbox
+            const checkBtn = document.getElementById('checkBtn');
+            const checkLabel = document.getElementById('checkLabel');
+            
+            if (isCompleted) {
+                checkBtn.classList.add('checked');
+                checkLabel.textContent = 'Leitura concluída';
+                checkLabel.style.color = 'var(--success)';
+            } else {
+                checkBtn.classList.remove('checked');
+                checkLabel.textContent = 'Marcar leitura como concluída';
+                checkLabel.style.color = '';
+            }
+            
+            // Atualizar estatísticas
+            document.getElementById('completedDays').textContent = appState.completedDays;
+            document.getElementById('streakDays').textContent = appState.streak;
+            document.getElementById('remainingDays').textContent = 180 - appState.completedDays;
+            document.getElementById('progressPercent').textContent = Math.round(appState.progress) + '%';
+            document.getElementById('progressFill').style.width = appState.progress + '%';
+            
+            // Atualizar progresso geral
+            document.getElementById('overallProgress').textContent = Math.round(appState.progress) + '%';
+            document.getElementById('overallProgressBar').style.width = appState.progress + '%';
+            document.getElementById('totalChapters').textContent = appState.totalChapters;
+            document.getElementById('totalBooks').textContent = appState.totalBooks || 0;
+            
+            // Atualizar calendário
+            updateCalendar();
+            
+            // Atualizar anotações
+            const notesTextarea = document.getElementById('notesTextarea');
+            if (appState.notes[todayKey]) {
+                notesTextarea.value = appState.notes[todayKey];
+            } else {
+                notesTextarea.value = '';
+            }
+        }
+        
+        function updateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+            
+            // Cabeçalho dos dias da semana
+            const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            daysOfWeek.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.style.color = 'var(--gray)';
+                dayElement.style.fontWeight = '600';
+                calendarGrid.appendChild(dayElement);
+            });
+            
+            // Calcular primeiro dia do mês
+            const currentMonth = 0; // Janeiro
+            const firstDay = new Date(2026, currentMonth, 1).getDay();
+            
+            // Dias vazios no início
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Dias do mês
+            const daysInMonth = 31;
+            const todayDayOfYear = getDayOfYear(appState.currentDay);
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                const dayOfYear = getDayOfYear(day);
+                
+                if (dayOfYear === todayDayOfYear) {
+                    dayElement.classList.add('current');
+                } else if (appState.completedDates.includes(dayOfYear.toString())) {
+                    dayElement.classList.add('completed');
+                } else if (day < appState.currentDay) {
+                    dayElement.classList.add('future');
+                } else {
+                    dayElement.classList.add('future');
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+        
+        // ==================== EVENT LISTENERS ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar estado
+            loadState();
+            updateUI();
+            
+            // Checkbox de leitura
+            document.getElementById('checkContainer').addEventListener('click', toggleDayCompleted);
+            
+            // Navegação entre seções
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Atualizar navegação
+                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar seção correspondente
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // Botão de anotações
+            document.getElementById('notesBtn').addEventListener('click', function() {
+                document.getElementById('notesModal').classList.add('active');
+            });
+            
+            document.getElementById('fabNotes').addEventListener('click', function() {
+                document.getElementById('notesModal').classList.add('active');
+            });
+            
+            // Fechar modal
+            document.getElementById('closeNotesModal').addEventListener('click', function() {
+                document.getElementById('notesModal').classList.remove('active');
+            });
+            
+            // Salvar anotações
+            document.getElementById('saveNotesBtn').addEventListener('click', function() {
+                const todayKey = getDayOfYear(appState.currentDay).toString();
+                const notesTextarea = document.getElementById('notesTextarea');
+                
+                appState.notes[todayKey] = notesTextarea.value;
+                saveState();
+                showToast('Anotações salvas com sucesso!', 'success');
+                
+                setTimeout(() => {
+                    document.getElementById('notesModal').classList.remove('active');
+                }, 1000);
+            });
+            
+            // Configurações
+            document.getElementById('darkModeToggle').addEventListener('change', function() {
+                appState.darkMode = this.checked;
+                if (appState.darkMode) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+                saveState();
+            });
+            
+            document.getElementById('notificationsToggle').addEventListener('change', function() {
+                appState.notifications = this.checked;
+                saveState();
+                showToast(`Notificações ${this.checked ? 'ativadas' : 'desativadas'}`, 'success');
+            });
+            
+            document.getElementById('soundToggle').addEventListener('change', function() {
+                appState.sound = this.checked;
+                saveState();
+            });
+            
+            // Botões de ação
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                const dataStr = JSON.stringify(appState, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                const exportFileDefaultName = `biblia180-progresso-${new Date().toISOString().slice(0,10)}.json`;
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+                
+                showToast('Progresso exportado com sucesso!', 'success');
+            });
+            
+            document.getElementById('shareBtn').addEventListener('click', function() {
+                const shareText = `📖 Estou lendo a Bíblia em 180 dias! Já completei ${appState.completedDays} dias (${Math.round(appState.progress)}%). Junte-se a mim! #BíbliaEm180 #2026AnoDasOportunidades`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Bíblia em 180 – 2026',
+                        text: shareText,
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        showToast('Texto copiado para a área de transferência!', 'success');
+                    });
+                }
+            });
+            
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                if (confirm('Tem certeza que deseja reiniciar todo o seu progresso? Esta ação não pode ser desfeita.')) {
+                    localStorage.removeItem('bibleApp2026');
+                    location.reload();
+                }
+            });
+            
+            document.getElementById('helpBtn').addEventListener('click', function() {
+                alert('📖 BÍBLIA EM 180 – 2026\n\n• Marque cada dia como lido após completar a leitura\n• Adicione anotações para refletir sobre o texto\n• Acompanhe seu progresso no calendário\n• Compartilhe suas conquistas com amigos\n\n2026: O Ano das Oportunidades! ✨');
+            });
+            
+            // Inicializar toggle states
+            document.getElementById('darkModeToggle').checked = appState.darkMode;
+            document.getElementById('notificationsToggle').checked = appState.notifications;
+            document.getElementById('soundToggle').checked = appState.sound;
+            
+            if (appState.darkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Simular notificação
+            if (appState.notifications) {
+                setTimeout(() => {
+                    showToast('📖 Não se esqueça da leitura de hoje!', 'success');
+                }, 2000);
+            }
+        });
+        
+        // Simulação de avanço de dias (para teste)
+        window.nextDay = function() {
+            if (appState.currentDay < 180) {
+                appState.currentDay++;
+                updateUI();
+            }
+        };
+        
+        window.prevDay = function() {
+            if (appState.currentDay > 1) {
+                appState.currentDay--;
+                updateUI();
+            }
+        };
+    </script>
+</body>
+</html>
